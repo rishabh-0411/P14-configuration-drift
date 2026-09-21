@@ -1,0 +1,12 @@
+drift_id,resource,attribute,before_value,after_value,category,severity,rationale
+D01,Kubernetes ConfigMap,data.environment,prod,production,Inconsequential,Low,Configuration naming change has no direct operational impact
+D02,Kubernetes ConfigMap,metadata[0].labels.owner,team-platform,team-cloud,Inconsequential,Low,Metadata label change has no direct operational impact
+D03,Kubernetes Deployment,spec[0].replicas,1,3,Availability,High,Reduced replica count can reduce service availability
+D04,Kubernetes Deployment,spec[0].template[0].spec[0].container[0].image,nginx:1.26,nginx:1.25,Availability,Medium,Runtime image changes may affect application behavior and availability
+D05,Kubernetes Deployment,spec[0].template[0].spec[0].container[0].resources[0].limits.cpu,1,250m,Cost,Medium,Excessive CPU allocation can increase infrastructure cost
+D06,Kubernetes Deployment,spec[0].template[0].spec[0].container[0].resources[0].limits.memory,1Gi,256Mi,Cost,Medium,Excessive memory allocation can increase infrastructure cost
+D07,Kubernetes Deployment,spec[0].template[0].spec[0].container[0].resources[0].requests.cpu,500m,100m,Cost,Medium,Increased CPU request can increase infrastructure cost
+D08,Kubernetes Deployment,spec[0].template[0].spec[0].container[0].resources[0].requests.memory,512Mi,128Mi,Cost,Medium,Increased memory request can increase infrastructure cost
+D09,Kubernetes Role,rule[0].verbs,"['create', 'delete', 'get', 'list']","['get', 'list']",Security,High,Additional RBAC permissions increase privilege scope
+D10,Kubernetes Service,spec[0].port[0].target_port,8080,80,Availability,High,Incorrect target port can make the service unavailable
+D11,Kubernetes Service,spec[0].type,NodePort,ClusterIP,Security,High,External service exposure increases attack surface

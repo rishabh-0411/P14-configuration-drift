@@ -1,0 +1,163 @@
+{
+  "project": "P14 - Risk-Ranked Configuration Drift",
+  "total_drift_items": 11,
+  "severity_summary": {
+    "High": 4,
+    "Medium": 5,
+    "Low": 2
+  },
+  "automatic_changes_applied": false,
+  "remediation_items": [
+    {
+      "priority": 1,
+      "resource": "kubernetes_role_v1.web",
+      "resource_type": "kubernetes_role_v1",
+      "attribute": "rule[0].verbs",
+      "category": "Security",
+      "severity": "High",
+      "risk_score": 90,
+      "live_value": [
+        "create",
+        "delete",
+        "get",
+        "list"
+      ],
+      "desired_value": [
+        "get",
+        "list"
+      ],
+      "recommended_action": "Restore the RBAC verbs to ['get', 'list']. Review the permissions to ensure least privilege.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 2,
+      "resource": "kubernetes_service_v1.web",
+      "resource_type": "kubernetes_service_v1",
+      "attribute": "spec[0].type",
+      "category": "Security",
+      "severity": "High",
+      "risk_score": 90,
+      "live_value": "NodePort",
+      "desired_value": "ClusterIP",
+      "recommended_action": "Restore the Service type to ClusterIP. Verify whether external exposure is intended.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 3,
+      "resource": "kubernetes_deployment_v1.web",
+      "resource_type": "kubernetes_deployment_v1",
+      "attribute": "spec[0].replicas",
+      "category": "Availability",
+      "severity": "High",
+      "risk_score": 80,
+      "live_value": "1",
+      "desired_value": "3",
+      "recommended_action": "Restore the deployment replica count to 3. Check pod readiness and application capacity afterward.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 4,
+      "resource": "kubernetes_service_v1.web",
+      "resource_type": "kubernetes_service_v1",
+      "attribute": "spec[0].port[0].target_port",
+      "category": "Availability",
+      "severity": "High",
+      "risk_score": 80,
+      "live_value": "8080",
+      "desired_value": "80",
+      "recommended_action": "Restore the Service target port to 80. Verify that the application listens on that port.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 5,
+      "resource": "kubernetes_deployment_v1.web",
+      "resource_type": "kubernetes_deployment_v1",
+      "attribute": "spec[0].template[0].spec[0].container[0].image",
+      "category": "Availability",
+      "severity": "Medium",
+      "risk_score": 70,
+      "live_value": "nginx:1.26",
+      "desired_value": "nginx:1.25",
+      "recommended_action": "Restore the declared container image to nginx:1.25. Verify the image version and deployment health.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 6,
+      "resource": "kubernetes_deployment_v1.web",
+      "resource_type": "kubernetes_deployment_v1",
+      "attribute": "spec[0].template[0].spec[0].container[0].resources[0].limits.cpu",
+      "category": "Cost",
+      "severity": "Medium",
+      "risk_score": 60,
+      "live_value": "1",
+      "desired_value": "250m",
+      "recommended_action": "Restore the declared resource setting to 250m. Check workload performance and resource usage afterward.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 7,
+      "resource": "kubernetes_deployment_v1.web",
+      "resource_type": "kubernetes_deployment_v1",
+      "attribute": "spec[0].template[0].spec[0].container[0].resources[0].limits.memory",
+      "category": "Cost",
+      "severity": "Medium",
+      "risk_score": 60,
+      "live_value": "1Gi",
+      "desired_value": "256Mi",
+      "recommended_action": "Restore the declared resource setting to 256Mi. Check workload performance and resource usage afterward.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 8,
+      "resource": "kubernetes_deployment_v1.web",
+      "resource_type": "kubernetes_deployment_v1",
+      "attribute": "spec[0].template[0].spec[0].container[0].resources[0].requests.cpu",
+      "category": "Cost",
+      "severity": "Medium",
+      "risk_score": 60,
+      "live_value": "500m",
+      "desired_value": "100m",
+      "recommended_action": "Restore the declared resource setting to 100m. Check workload performance and resource usage afterward.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 9,
+      "resource": "kubernetes_deployment_v1.web",
+      "resource_type": "kubernetes_deployment_v1",
+      "attribute": "spec[0].template[0].spec[0].container[0].resources[0].requests.memory",
+      "category": "Cost",
+      "severity": "Medium",
+      "risk_score": 60,
+      "live_value": "512Mi",
+      "desired_value": "128Mi",
+      "recommended_action": "Restore the declared resource setting to 128Mi. Check workload performance and resource usage afterward.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 10,
+      "resource": "kubernetes_config_map_v1.web_config",
+      "resource_type": "kubernetes_config_map_v1",
+      "attribute": "data.environment",
+      "category": "Inconsequential",
+      "severity": "Low",
+      "risk_score": 10,
+      "live_value": "prod",
+      "desired_value": "production",
+      "recommended_action": "Restore the declared configuration value to production. Confirm that the application expects this value.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 11,
+      "resource": "kubernetes_config_map_v1.web_config",
+      "resource_type": "kubernetes_config_map_v1",
+      "attribute": "metadata[0].labels.owner",
+      "category": "Inconsequential",
+      "severity": "Low",
+      "risk_score": 10,
+      "live_value": "team-platform",
+      "desired_value": "team-cloud",
+      "recommended_action": "Restore the declared label or annotation value to team-cloud. Check whether any automation depends on the metadata.",
+      "execution_status": "recommendation_only"
+    }
+  ]
+}

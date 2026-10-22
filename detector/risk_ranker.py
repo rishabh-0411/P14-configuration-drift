@@ -1,7 +1,7 @@
-import sys
+﻿import sys
 from pathlib import Path
 
-from drift_detector import load_plan, detect_drift
+from detector.drift_detector import load_plan, detect_drift
 
 
 def classify_risk(change, resource_type):

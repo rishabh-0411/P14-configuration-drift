@@ -1,0 +1,46 @@
+{
+  "project": "P14 - Risk-Ranked Configuration Drift",
+  "total_drift_items": 2,
+  "severity_summary": {
+    "High": 2,
+    "Medium": 0,
+    "Low": 0
+  },
+  "automatic_changes_applied": false,
+  "remediation_items": [
+    {
+      "priority": 1,
+      "resource": "kubernetes_role_v1.web",
+      "resource_type": "kubernetes_role_v1",
+      "attribute": "rule[0].verbs",
+      "category": "Security",
+      "severity": "High",
+      "risk_score": 90,
+      "live_value": [
+        "create",
+        "delete",
+        "get",
+        "list"
+      ],
+      "desired_value": [
+        "get",
+        "list"
+      ],
+      "recommended_action": "Restore the RBAC verbs to ['get', 'list']. Review the permissions to ensure least privilege.",
+      "execution_status": "recommendation_only"
+    },
+    {
+      "priority": 2,
+      "resource": "kubernetes_service_v1.web",
+      "resource_type": "kubernetes_service_v1",
+      "attribute": "spec[0].type",
+      "category": "Security",
+      "severity": "High",
+      "risk_score": 90,
+      "live_value": "NodePort",
+      "desired_value": "ClusterIP",
+      "recommended_action": "Restore the Service type to ClusterIP. Verify whether external exposure is intended.",
+      "execution_status": "recommendation_only"
+    }
+  ]
+}

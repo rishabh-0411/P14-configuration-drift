@@ -1,0 +1,10 @@
+profile,configuration,n_items,runs,precision_at_5_mean,precision_at_5_sd,precision_at_5_interval_low,precision_at_5_interval_high,precision_at_10_mean,precision_at_10_sd,precision_at_10_interval_low,precision_at_10_interval_high,mean_dangerous_rank_mean,mean_dangerous_rank_sd,mean_dangerous_rank_interval_low,mean_dangerous_rank_interval_high,uncertainty_note
+Security-focused,Terraform baseline,2,1,1.0,,,,1.0,,,,1.5,,,,Deterministic point estimate; no interval
+Security-focused,Proposed ranking,2,1,1.0,,,,1.0,,,,1.5,,,,Deterministic point estimate; no interval
+Security-focused,Random baseline,2,1000,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.5,0.0,1.5,1.5,Empirical 2.5th-97.5th percentile of random permutations; not a confidence interval for generalization
+Availability-cost-focused,Terraform baseline,7,1,0.2,,,,0.2857142857142857,,,,4.0,,,,Deterministic point estimate; no interval
+Availability-cost-focused,Proposed ranking,7,1,0.4,,,,0.2857142857142857,,,,1.5,,,,Deterministic point estimate; no interval
+Availability-cost-focused,Random baseline,7,1000,0.2828,0.1144,0.0,0.4,0.2857,0.0,0.2857,0.2857,4.0275,1.248,1.5,6.5,Empirical 2.5th-97.5th percentile of random permutations; not a confidence interval for generalization
+Mixed,Terraform baseline,11,1,0.2,,,,0.3,,,,8.25,,,,Deterministic point estimate; no interval
+Mixed,Proposed ranking,11,1,0.8,,,,0.4,,,,2.5,,,,Deterministic point estimate; no interval
+Mixed,Random baseline,11,1000,0.3688,0.1695,0.0,0.6,0.3653,0.0476,0.3,0.4,5.9543,1.3271,3.5,8.5,Empirical 2.5th-97.5th percentile of random permutations; not a confidence interval for generalization

@@ -1,0 +1,25 @@
+{
+  "project": "P14 - Risk-Ranked Configuration Drift",
+  "total_drift_items": 1,
+  "severity_summary": {
+    "High": 1,
+    "Medium": 0,
+    "Low": 0
+  },
+  "automatic_changes_applied": false,
+  "remediation_items": [
+    {
+      "priority": 1,
+      "resource": "kubernetes_deployment_v1.web",
+      "resource_type": "kubernetes_deployment_v1",
+      "attribute": "spec[0].replicas",
+      "category": "Availability",
+      "severity": "High",
+      "risk_score": 80,
+      "live_value": "1",
+      "desired_value": "3",
+      "recommended_action": "Restore the deployment replica count to 3. Check pod readiness and application capacity afterward.",
+      "execution_status": "recommendation_only"
+    }
+  ]
+}
